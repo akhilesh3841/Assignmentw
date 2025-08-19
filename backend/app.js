@@ -1,0 +1,29 @@
+import express from 'express';
+import cors from 'cors'; 
+import mongoose from 'mongoose';
+import { connection } from "./database/db.js";
+import userRoutes from './routes/userRoutes.js';
+import claimRoutes from "./routes/claimRoutes.js";
+
+const app = express();
+
+
+app.use(cors());
+
+
+app.use(cors({ origin: "http://localhost:5173" })); 
+
+connection();
+
+app.get("/", (req, res) => {
+    res.send("Hello World");
+});
+
+app.use(express.json());
+
+app.use("/", userRoutes);
+app.use("/", claimRoutes);
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
