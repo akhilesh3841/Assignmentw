@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export const connection=async()=>{
-    await mongoose.connect("mongodb+srv://akhilesh4149yadav:yoql89ll2@cluster0.bidvlwq.mongodb.net/",{
+    await mongoose.connect(process.env.DB_NAME,{
         dbName:"assignment",
     })
     .then(()=>{

@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import { connection } from "./database/db.js";
 import userRoutes from './routes/userRoutes.js';
 import claimRoutes from "./routes/claimRoutes.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
