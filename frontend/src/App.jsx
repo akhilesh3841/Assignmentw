@@ -1,36 +1,22 @@
-import React from "react";
-import Leaderboard from "./components/ClaimPoints";
-import ClaimPoints from "./components/Leaderboard";
-import History from "./components/History";
-import Userlist from "./components/Userlist";
-import { initialUsers } from "./assets/Data";
-import { useState } from "react";
-function App() {
+import React from 'react'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-  const [users,setUsers]=useState(initialUsers);
-  const [selecteduser,setSelcteduser]=useState(null);
-  const [history,setHistory]=useState([]);
+import ClaimPoints from './components/ClaimPoints'
+import History from './components/History'
+import Leaderboard from './components/Leaderboard'
 
-
-
+const App = () => {
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1 className="text-2xl font-bold mb-4">Claim Points App</h1>
-
-      <div>
-        <Userlist users={users} onselect={selecteduser}/>
-        <ClaimPoints selecteduser={selecteduser} 
-          users={users}
-          setUsers={setUsers}
-          setSelcteduser={setSelcteduser}
-          history={history}
-          setHistory={setHistory}
-        />
-      </div>
-      <Leaderboard users={users} />
-      <History history={history} />
+    <div>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Leaderboard />} />
+          <Route path="/claimpoints/:userid" element={<ClaimPoints />} />
+          <Route path="/history/:userid" element={<History />} />
+        </Routes>
+    </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
