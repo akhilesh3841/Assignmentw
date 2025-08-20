@@ -25,6 +25,7 @@ It is built using **MERN Stack** (MongoDB, Express, React, Node.js).
 
 ## 📂 Project Structure
 
+```
 Leaderboard/
 │── backend/ # Node.js + Express API
 │ ├── models/ # Mongoose schemas
@@ -39,6 +40,7 @@ Leaderboard/
 │
 └── README.md
 
+```
 
 ---
 
