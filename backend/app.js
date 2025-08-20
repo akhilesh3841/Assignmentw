@@ -5,13 +5,10 @@ import { connection } from "./database/db.js";
 import userRoutes from './routes/userRoutes.js';
 import claimRoutes from "./routes/claimRoutes.js";
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const app = express();
-
-
-app.use(cors());
-
 
 app.use(cors({
   origin: ["https://assignmentw-kappa.vercel.app"], 
@@ -21,15 +18,15 @@ app.use(cors({
 
 connection();
 
-app.get("/", (req, res) => {
-    res.send("Hello World");
-});
-
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.use("/", userRoutes);
 app.use("/", claimRoutes);
 
 app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+  console.log("Server is running on port 3000");
 });

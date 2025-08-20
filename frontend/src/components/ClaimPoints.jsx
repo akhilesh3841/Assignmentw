@@ -7,10 +7,12 @@ const ClaimPoints = () => {
   const { userid } = useParams();
   const [loading, setLoading] = useState(true);
 
-  const fetchPoints = async () => {
+const fetchPoints = async () => {
     try {
       const response = await axios.post(
-        `${base_url}/claim/${userid}`
+        `${base_url}/claim/${userid}`,
+        {},                         
+        { withCredentials: true } 
       );
       setData(response.data);
       console.log(response.data);

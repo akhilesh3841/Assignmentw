@@ -7,32 +7,41 @@ const Userlist = () => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const fetchUsers = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(`${base_url}/getuser`);
-      const sorted = response.data.sort((a, b) => a.rank - b.rank).slice(0, 10);
-      setData(sorted);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+const fetchUsers = async () => {
+  try {
+    setLoading(true);
+    const response = await axios.get(`${base_url}/getuser`, {
+      withCredentials: true,
+    });
+    const sorted = response.data.sort((a, b) => a.rank - b.rank).slice(0, 10);
+    setData(sorted);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  const addoneUser = async () => {
-    try {
-      await axios.post(`${base_url}/adduser`, { name });
-      setName("");
-      fetchUsers();
-    } catch (error) {
-      console.error("Error adding user:", error);
-    }
-  };
+
+const addoneUser = async () => {
+  try {
+    await axios.post(
+      `${base_url}/adduser`,
+      { name },
+      { withCredentials: true } // 👈 Add this
+    );
+    setName("");
+    fetchUsers();
+  } catch (error) {
+    console.error("Error adding user:", error);
+  }
+};
+
 
   const handleAdd = () => {
     if (name.trim() !== "") {

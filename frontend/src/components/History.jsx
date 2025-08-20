@@ -10,7 +10,8 @@ const History = () => {
   const fetchHistory = async () => {
     try {
       const response = await axios.get(
-        `${base_url}/history/${userid}`
+        `${base_url}/history/${userid}`,
+        { withCredentials: true }   
       );
       setHistory(response.data);
       setLoading(false);
