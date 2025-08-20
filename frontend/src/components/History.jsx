@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-
+import { base_url } from "../utils/helper.jsx";
 const History = () => {
   const { userid } = useParams();
   const [history, setHistory] = useState([]);
@@ -10,7 +10,7 @@ const History = () => {
   const fetchHistory = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/history/${userid}`
+        `${base_url}/history/${userid}`
       );
       setHistory(response.data);
       setLoading(false);

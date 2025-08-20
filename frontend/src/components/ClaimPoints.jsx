@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-
+import { base_url} from "../utils/helper";
 const ClaimPoints = () => {
   const [data, setData] = useState({});
   const { userid } = useParams();
@@ -10,7 +10,7 @@ const ClaimPoints = () => {
   const fetchPoints = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/claim/${userid}`
+        `${base_url}/claim/${userid}`
       );
       setData(response.data);
       console.log(response.data);

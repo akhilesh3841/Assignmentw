@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { base_url } from '../utils/helper.jsx';
 const Userlist = () => {
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
@@ -10,7 +10,7 @@ const Userlist = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3000/getuser");
+      const response = await axios.get(`${base_url}/getuser`);
       const sorted = response.data.sort((a, b) => a.rank - b.rank).slice(0, 10);
       setData(sorted);
     } catch (error) {
@@ -26,7 +26,7 @@ const Userlist = () => {
 
   const addoneUser = async () => {
     try {
-      await axios.post("http://localhost:3000/adduser", { name });
+      await axios.post(`${base_url}/adduser`, { name });
       setName("");
       fetchUsers();
     } catch (error) {
